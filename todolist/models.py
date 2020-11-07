@@ -6,7 +6,6 @@ from django.core.validators import MinLengthValidator
 class Task(models.Model):
     description = models.CharField(
             max_length=200,
-            help_text='Describe your task',
             validators=[MinLengthValidator(5, "Too short description")]
     )
     status = models.BooleanField(default=False)
