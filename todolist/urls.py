@@ -1,7 +1,7 @@
-from django.urls import path, include
-from todolist import views
+from django.urls import path
+from . import views
 
 app_name = 'todolist'
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.MainView.as_view(), name='home'),
 ]
