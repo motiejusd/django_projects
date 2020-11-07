@@ -7,7 +7,7 @@
   <body>
     <h1>Time to complete your tasks!</h1>
     <p>Overall tasks:<strong>{{ task_count }}</strong></p>
-    <form action="../todolist/" method="POST">
+    <form action="" method="POST">
       {% csrf_token %}
       {{ form.description }}
       <input type="submit" name="Create task" value="Add">
