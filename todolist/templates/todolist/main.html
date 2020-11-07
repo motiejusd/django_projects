@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Time to complete your tasks!</h1>
-    <p>Overall tasks:<strong>{{ task_count }}</strong></p>
+    <h3>Overall tasks: <strong>{{ tasks_count }}</strong></h4>
     <form action="" method="POST">
       {% csrf_token %}
       {{ form.description }}
@@ -14,7 +14,8 @@
     </form>
     {% for task in tasks %}
     <div>
-    <p>{{ task }}</p>
+    <p>{{ task }} </p>
+    <a href="{% url 'todolist:update' task.id %}">Update</a>
     </div>
     {% endfor %}
   </body>
