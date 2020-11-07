@@ -6,8 +6,16 @@
   </head>
   <body>
     <h1>Time to complete your tasks!</h1>
-    <p>Tasks:<strong>{{ task_count }}</strong></p>
-    <!-- <p>Completed:</p>
-    <p>Pending:</p> -->
+    <p>Overall tasks:<strong>{{ task_count }}</strong></p>
+    <form action="../todolist/" method="POST">
+      {% csrf_token %}
+      {{ form.description }}
+      <input type="submit" name="Create task" value="Add">
+    </form>
+    {% for task in tasks %}
+    <div>
+    <p>{{ task }}</p>
+    </div>
+    {% endfor %}
   </body>
 </html>
