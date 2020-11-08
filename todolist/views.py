@@ -37,3 +37,15 @@ def update(request, pk):
 
     context = {'form': form}
     return render(request, 'todolist/update.html', context)
+
+
+def delete(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    success_url = reverse_lazy('todolist:index')
+
+    if request.method == 'POST':
+        task = get_object_or_404(Task, id=pk)
+        task.delete()
+        return redirect(success_url)
+    context = {'task': task}
+    return render(request, 'todolist/delete.html', context)
