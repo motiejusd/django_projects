@@ -3,9 +3,17 @@
     <h3>Delete task</h3>
       <form action="" method="POST">
         {% csrf_token %}
+        <div class="row">
+          <div class="col-md-8">
         <p>Are you sure you want delete
           <strong>{{ task.description }}</strong> task?</p>
-        <input type="submit" name="delete" value="Delete">
-        <a href="{% url 'todolist:index' %}">Go back</a>
+          </div>
+          <div class="col-md-8">
+        <input type="submit" name="delete" value="Delete" class="btn btn-secondary btn-lg inactive" class="font-weight-bold" role="button" aria-pressed="true">
+          </div>
+          <div class="col-md-4">
+        <a href="{% url 'todolist:index' %}" class="btn btn-secondary btn-lg inactive" class="font-weight-bold" role="button" aria-pressed="true">Go back</a>
+          </div>
+        </div>
       </form>
 {% endblock %}
