@@ -1,6 +1,5 @@
 {% extends "todolist/base.html" %}
 {% block content %}
-
   <h1>Time to complete your tasks!</h1>
   <form action="" method="POST">
     {% csrf_token %}
@@ -9,7 +8,20 @@
     </div>
     <div class="row">
       <div class="col-md-8"><input class="btn btn-success" type="submit" name="Create task" value="Add"><hr></div>
+    </div>
+  </form>
 
+  <form>
+    <div class="row">
+      <div class="col-md-8"><select name="filter" id="filter">
+        <option value="completed">Show completed tasks</option>
+        <option value="not_completed">Show incomplete tasks</option>
+        <option value="False">Show all tasks</option>
+      </select>
+      </div>
+      <div class="col-md-8">
+      <input type="submit" value="Filter" class="btn btn-success">
+      <hr></div>
     </div>
   </form>
 
@@ -17,12 +29,7 @@
     {% for task in tasks %}
   <div class="row">
     <div class="col-md-8">
-      <!-- <p style="{% if task.status == True %} text-decoration: line-through; {% endif %}">{{ task }} </p> -->
-
       <div class="{% if task.status == False %}alert alert-danger{% else %}alert alert-success{% endif %}" role="alert">{{ task }}</div>
-
-      <!-- <div class="alert alert-danger" role="alert">fail</div>
-      <div class="alert alert-success" role="alert">success</div> -->
     </div>
     <div class="col-md-4">
       <a href="{% url 'todolist:update' task.id %}" class="btn btn-primary btn-lg inactive" role="button" aria-pressed="true">Update</a>
@@ -31,7 +38,7 @@
   </div>
     {% endfor %}
   {% else %}
-    <p>You haven't created any tasks yet.</p>
+    <p>No tasks to show.</p>
   {% endif %}
 
   {% endblock %}

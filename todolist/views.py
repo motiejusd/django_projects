@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
+from django.db.models import Count
 # from . import View
 
 from todolist.models import Task
@@ -19,6 +20,14 @@ def index(request):
         if form.is_valid():
             form.save()
         return redirect(success_url)
+
+    filter = request.GET.get('filter', False)
+    if filter == 'completed':
+        tasks = Task.objects.filter(status=True)
+    elif filter == 'not_completed':
+        tasks = Task.objects.filter(status=False)
+    else:
+        filter = False
 
     context = {'tasks': tasks, 'form': form, 'tasks_count': tasks_count}
     return render(request, 'todolist/main.html', context)
